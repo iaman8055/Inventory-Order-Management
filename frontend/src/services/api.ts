@@ -2,7 +2,7 @@ import axios from "axios";
 import { mockDb } from "./mockDb";
 
 const api = axios.create({
-  baseURL: "http://localhost:8000"
+  baseURL: import.meta.env.VITE_API_BASE_URL
 });
 
 // Utility to helper direct call or wrap mockDb
