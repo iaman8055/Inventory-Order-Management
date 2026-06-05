@@ -385,17 +385,4 @@ https://hub.docker.com/r/YOUR_DOCKER_USERNAME/inventory-api
 
 ---
 
-# Submission Deliverables
 
-- GitHub Repository
-- Docker Hub Backend Image
-- Live Backend URL
-- Live Frontend URL
-
----
-
-## Author
-
-Aman Kumar
-
-Software Engineer
