@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from backend.app.database.db import get_db
-from backend.app.schemas.customer import CustomerCreate
+from app.database.db import get_db
+from app.schemas.customer import CustomerCreate
 
 # Updated imports to include the new service functions
-from backend.app.services.customer import (
+from app.services.customer import (
     create_new_customer, 
     get_all_customers,
     get_customer_by_id,

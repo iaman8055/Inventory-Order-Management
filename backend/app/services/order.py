@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session, joinedload
-from backend.app.models.customer import Customer
-from backend.app.models.product import Product
-from backend.app.models.order import Order, OrderItem
-from backend.app.schemas.order import OrderCreate
+from app.models.customer import Customer
+from app.models.product import Product
+from app.models.order import Order, OrderItem
+from app.schemas.order import OrderCreate
 
 
 def create_new_order(db: Session, payload: OrderCreate) -> Order:

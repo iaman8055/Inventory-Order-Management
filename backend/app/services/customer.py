@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from backend.app.models.customer import Customer
-from backend.app.schemas.customer import CustomerCreate
+from app.models.customer import Customer
+from app.schemas.customer import CustomerCreate
 
 def create_new_customer(db: Session, payload: CustomerCreate) -> Customer:
     existing = db.query(Customer).filter(Customer.email == payload.email).first()

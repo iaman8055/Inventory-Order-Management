@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from backend.app.database.db import get_db
-from backend.app.schemas.order import OrderCreate
+from app.database.db import get_db
+from app.schemas.order import OrderCreate
 
 # Import the service functions
-from backend.app.services.order import (
+from app.services.order import (
     create_new_order,
     get_all_orders,
     get_order_by_id,

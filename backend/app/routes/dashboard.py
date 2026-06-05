@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from backend.app.database.db import get_db
-from backend.app.services.dashboard import get_dashboard_metrics
+from app.database.db import get_db
+from app.services.dashboard import get_dashboard_metrics
 
 router = APIRouter(prefix="/dashboard", tags=["Dashboard"])
 

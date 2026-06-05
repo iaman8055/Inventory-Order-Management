@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from backend.app.database.db import get_db
-from backend.app.schemas.product import ProductCreate, ProductUpdate
+from app.database.db import get_db
+from app.schemas.product import ProductCreate, ProductUpdate
 
 # Import our decoupled product service functions
-from backend.app.services.product import (
+from app.services.product import (
     create_new_product,
     get_all_products,
     get_product_by_id,

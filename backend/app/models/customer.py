@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String
-from backend.app.database.db import Base
+from app.database.db import Base
 
 class Customer(Base):
     __tablename__ = "customers"
@@ -15,4 +15,4 @@ class Customer(Base):
         index=True
     )
 
-    phone_number = Column(String, nullable=False)
+    phone = Column(String, nullable=False)

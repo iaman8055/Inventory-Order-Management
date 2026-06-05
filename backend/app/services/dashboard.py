@@ -1,9 +1,9 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 
-from backend.app.models.product import Product
-from backend.app.models.customer import Customer
-from backend.app.models.order import Order
+from app.models.product import Product
+from app.models.customer import Customer
+from app.models.order import Order
 
 LOW_STOCK_THRESHOLD = 10
 

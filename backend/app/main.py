@@ -1,29 +1,27 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.app.database.db import Base, engine
-from app.routes import customers, products, orders
-
 from fastapi.exceptions import RequestValidationError
 
-
-from backend.app.core.exceptions import (
+from app.database.db import Base, engine
+from app.core.exceptions import (
     validation_exception_handler,
     generic_exception_handler
 )
-from backend.app.routes import dashboard, health
+from app.routes import health, dashboard, customer, product, order
 
-
+# Create database tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Inventory Management API",
     version="1.0.0",
-    description="A clean, decoupled API for managing products, customers, and orders."
+    description="A clean, decoupled API for managing products, customers, and orders.",
+    redirect_slashes=False
 )
 
+# Exception Handlers Registration
 app.add_exception_handler(RequestValidationError, validation_exception_handler)
 app.add_exception_handler(Exception, generic_exception_handler)
-
 
 # CORS Configuration
 origins = [
@@ -40,12 +38,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# 4. Register all the routers
+# Register all routers
 app.include_router(health.router)
 app.include_router(dashboard.router)
-app.include_router(customers.router)
-app.include_router(products.router)
-app.include_router(orders.router)
+app.include_router(customer.router)
+app.include_router(product.router)
+app.include_router(order.router)
+
 
 @app.get("/", tags=["Root"])
 def root():
