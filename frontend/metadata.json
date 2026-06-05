@@ -1,0 +1,6 @@
+{
+  "name": "Inventory & Order Management System",
+  "description": "A professional and responsive Dashboard for managing inventory, tracking products, and organizing customers and orders.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

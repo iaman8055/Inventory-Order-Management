@@ -1,0 +1,50 @@
+version: "3.9"
+
+services:
+
+  db:
+    image: postgres:16-alpine
+    container_name: inventory-db
+
+    restart: always
+
+    environment:
+      POSTGRES_DB: inventory_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ./backend
+
+    container_name: inventory-backend
+
+    depends_on:
+      - db
+
+    ports:
+      - "8000:8000"
+
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/inventory_db
+
+  frontend:
+    build:
+      context: ./frontend
+
+    container_name: inventory-frontend
+
+    depends_on:
+      - backend
+
+    ports:
+      - "3000:4173"
+
+volumes:
+  postgres_data:
