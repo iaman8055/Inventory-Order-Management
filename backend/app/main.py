@@ -27,7 +27,7 @@ app.add_exception_handler(Exception, generic_exception_handler)
 origins = [
     "http://localhost:3000",
     "http://localhost:5173",
-    "https://your-vercel-app.vercel.app"
+    "https://inventory-order-management-two.vercel.app"
 ]
 
 app.add_middleware(
