@@ -37,7 +37,7 @@ export const customerService = {
     if (!emailRegex.test(customerData.email)) {
       throw new Error("Invalid email format");
     }
-    if (!customerData.phone_number || customerData.phone_number.trim() === "") {
+    if (!customerData.phone || customerData.phone.trim() === "") {
       throw new Error("Phone number is required");
     }
 

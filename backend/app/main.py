@@ -19,10 +19,6 @@ app = FastAPI(
     redirect_slashes=False
 )
 
-# Exception Handlers Registration
-app.add_exception_handler(RequestValidationError, validation_exception_handler)
-app.add_exception_handler(Exception, generic_exception_handler)
-
 # CORS Configuration
 origins = [
     "http://localhost:3000",
@@ -30,6 +26,7 @@ origins = [
     "https://inventory-order-management-two.vercel.app"
 ]
 
+# 1. ADD MIDDLEWARE FIRST
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -37,6 +34,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# 2. REGISTER EXCEPTION HANDLERS SECOND
+# Moving these below the middleware configuration guarantees that responses 
+# built by your handlers will still inherit the active CORS headers!
+app.add_exception_handler(RequestValidationError, validation_exception_handler)
+app.add_exception_handler(Exception, generic_exception_handler)
 
 # Register all routers
 app.include_router(health.router)

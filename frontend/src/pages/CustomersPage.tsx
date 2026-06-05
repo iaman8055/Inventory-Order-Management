@@ -60,16 +60,20 @@ export const CustomersPage: React.FC = () => {
   };
 
   const handleDelete = async (id: number) => {
-    if (window.confirm("Are you sure you want to remove this client? Historical orders associated with this ID may remain tracked.")) {
-      try {
-        await customerService.deleteCustomer(id);
-        toast.success("Client profile removed successfully");
-        setCustomers(prev => prev.filter(c => c.id !== id));
-      } catch (err: any) {
-        toast.error(err?.message || "Could not delete client profile.");
-      }
+  if (window.confirm("Are you sure you want to remove this client? Historical orders associated with this ID may remain tracked.")) {
+    try {
+      await customerService.deleteCustomer(id);
+      toast.success("Client profile removed successfully");
+      setCustomers((prev: any[]) => prev.filter(c => c.id !== id));
+    } catch (err: any) {
+      console.log("error:",err)
+      // 👇 EXTRACT THE CUSTOM BACKEND MESSAGE SAFELY
+      const errorMessage = err.response?.data?.message || err.message || "Could not delete client profile.";
+      
+      toast.error(errorMessage);
     }
-  };
+  }
+};
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -99,7 +103,7 @@ export const CustomersPage: React.FC = () => {
       const added = await customerService.addCustomer({
         full_name: fullName.trim(),
         email: email.trim().toLowerCase(),
-        phone_number: phoneNumber.trim()
+        phone: phoneNumber.trim()
       });
       toast.success(`Registered client "${added.full_name}"`);
       setModalOpen(false);
